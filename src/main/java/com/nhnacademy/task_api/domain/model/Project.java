@@ -26,21 +26,20 @@ public class Project {
 
     @Setter
     @NotNull
-    private LocalDateTime createdAt;    // now()로 들어가도록
+    private LocalDateTime createdAt;
 
     @Setter
     @NotNull
     @Length(max = 50)
-    private String userId;
+    private String adminId;
 
     @Setter
     @NotNull
     private Status projectStatus;
 
-    public Project(long projectId, String projectName, String userId, Status projectStatus) {
-        this.projectId = projectId;
+    public Project(String projectName, String adminId, Status projectStatus) {
         this.projectName = projectName;
-        this.userId = userId;
+        this.adminId = adminId;
         this.projectStatus = projectStatus;
     }
 }
