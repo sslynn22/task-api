@@ -17,6 +17,7 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long tagId;
 
+    @Setter
     @JoinColumn(name = "project_id")
     @ManyToOne(optional = false)
     private Project project;
@@ -26,9 +27,7 @@ public class Tag {
     @Length(max = 50)
     private String tagName;
 
-    public Tag(long tagId, Project project, String tagName) {
-        this.tagId = tagId;
-        this.project = project;
+    public Tag(String tagName) {
         this.tagName = tagName;
     }
 }

@@ -29,3 +29,29 @@ Accept: application/json
 ###
 DELETE localhost:6060/1
 Accept: application/json
+
+
+### Tag CRUD
+### Tag 생성
+POST localhost:6060/1/tag
+Content-Type: application/json
+
+{
+  "tagName": "testTag"
+}
+
+### Tag 조회
+GET localhost:6060/1/tag
+Accept: application/json
+
+### Tag 수정
+PUT localhost:6060/1/tag
+Content-Type: application/json
+
+{
+  "tagName": "tag수정"
+}
+
+### Tag 삭제
+DELETE localhost:6060/1/tag
+Accept: application/json
