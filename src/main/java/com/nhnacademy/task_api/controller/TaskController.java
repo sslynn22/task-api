@@ -18,9 +18,8 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping("/")
-    public List<Task> findAllTasks(@PathVariable("projectId") long projectId) {
-//        return new TaskDTO(taskService.findTasks(projectId));
-        return taskService.findTasks(projectId);
+    public TaskDTO findAllTasks(@PathVariable("projectId") long projectId) {
+        return new TaskDTO(taskService.findTasks(projectId));
     }
 
     @PostMapping("/")
@@ -31,9 +30,8 @@ public class TaskController {
     }
 
     @GetMapping("/{taskId}")
-    public Task findTaskById(@PathVariable("taskId") long taskId) {
-//        return new TaskDTO(taskService.findTaskById(taskId));
-        return taskService.findTaskById(taskId);
+    public TaskDTO findTaskById(@PathVariable("taskId") long taskId) {
+        return new TaskDTO(taskService.findTaskById(taskId));
     }
 
     @PutMapping("/{taskId}")
