@@ -35,6 +35,7 @@ public class Project {
 
     @Setter
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Status projectStatus;
 
     public Project(String projectName, String adminId, Status projectStatus) {
