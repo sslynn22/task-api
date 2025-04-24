@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "task")
 public class Task {
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long taskId;
@@ -35,19 +36,30 @@ public class Task {
 
     @Setter
     @NotNull
-    private LocalDateTime createdAt;    // now()로 들어가도록
+    private LocalDateTime createdAt;
 
+    @Setter
     @JoinColumn(name = "project_id")
     @ManyToOne(optional = false)
     private Project project;
 
-    // milestone 추가 필요
+    @Setter
+    @JoinColumn(name = "milestone_id")
+    @ManyToOne(optional = false)
+    private MileStone mileStone;
 
     public Task(long taskId, String taskName, String userId, String managerId, Project project) {
         this.taskId = taskId;
         this.taskName = taskName;
         this.userId = userId;
         this.managerId = managerId;
+        this.createdAt = LocalDateTime.now();
         this.project = project;
+        this.mileStone = null;
+    }
+
+    public Task(String taskName, String managerId) {
+        this.taskName = taskName;
+        this.managerId = managerId;
     }
 }

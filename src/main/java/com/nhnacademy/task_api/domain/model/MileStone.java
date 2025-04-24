@@ -11,22 +11,20 @@ import org.hibernate.validator.constraints.Length;
 
 import java.time.ZonedDateTime;
 
-// 이거 주석 삭제하고 사용
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "milestone")
 public class MileStone {
-    @EmbeddedId
-    MileStonePk mileStonePk;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long milestoneId;
 
     @JoinColumn(name = "project_id")
-    @MapsId("projectId")
     @ManyToOne(optional = false)
     private Project project;
 
     @Setter
-    @NotNull
     @Length(max = 50)
     private String mileStoneName;
 
@@ -36,8 +34,8 @@ public class MileStone {
     @Setter
     private ZonedDateTime endDate;
 
-    public MileStone(MileStonePk mileStonePk, Project project, String mileStoneName, ZonedDateTime startDate, ZonedDateTime endDate) {
-        this.mileStonePk = mileStonePk;
+    public MileStone(Long milestoneId, Project project, String mileStoneName, ZonedDateTime startDate, ZonedDateTime endDate) {
+        this.milestoneId = milestoneId;
         this.project = project;
         this.mileStoneName = mileStoneName;
         this.startDate = startDate;
