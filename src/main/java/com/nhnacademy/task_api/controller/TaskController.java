@@ -3,13 +3,10 @@ package com.nhnacademy.task_api.controller;
 import com.nhnacademy.task_api.domain.dto.ResponseDTO;
 import com.nhnacademy.task_api.domain.dto.TaskDTO;
 import com.nhnacademy.task_api.domain.dto.TaskRequest;
-import com.nhnacademy.task_api.domain.model.Task;
 import com.nhnacademy.task_api.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
