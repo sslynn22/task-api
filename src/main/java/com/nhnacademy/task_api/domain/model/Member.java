@@ -13,14 +13,14 @@ import lombok.NoArgsConstructor;
 public class Member {
     @EmbeddedId
     @Valid
-    private MemberPK memberPK;
+    private MemberPk memberPK;
 
     @JoinColumn(name = "project_id")
     @MapsId("projectId")
     @ManyToOne(optional = false)
     private Project project;
 
-    public Member(MemberPK memberPK, Project project) {
+    public Member(MemberPk memberPK, Project project) {
         this.memberPK = memberPK;
         this.project = project;
     }
