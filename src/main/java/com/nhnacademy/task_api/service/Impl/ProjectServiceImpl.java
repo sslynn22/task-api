@@ -1,10 +1,10 @@
-package com.nhnacademy.task_api.service;
+package com.nhnacademy.task_api.service.Impl;
 
 import com.nhnacademy.task_api.domain.dto.ProjectRequest;
-import com.nhnacademy.task_api.domain.exception.ProjectAlreadyExistsException;
 import com.nhnacademy.task_api.domain.exception.ProjectNotFoundException;
 import com.nhnacademy.task_api.domain.model.Project;
 import com.nhnacademy.task_api.repository.ProjectRepository;
+import com.nhnacademy.task_api.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

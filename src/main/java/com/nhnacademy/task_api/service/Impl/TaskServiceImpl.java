@@ -1,4 +1,4 @@
-package com.nhnacademy.task_api.service;
+package com.nhnacademy.task_api.service.Impl;
 
 import com.nhnacademy.task_api.domain.dto.TaskRequest;
 import com.nhnacademy.task_api.domain.exception.ProjectNotFoundException;
@@ -7,6 +7,7 @@ import com.nhnacademy.task_api.domain.model.Project;
 import com.nhnacademy.task_api.domain.model.Task;
 import com.nhnacademy.task_api.repository.ProjectRepository;
 import com.nhnacademy.task_api.repository.TaskRepository;
+import com.nhnacademy.task_api.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

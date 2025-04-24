@@ -39,7 +39,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/{taskId}")
-    public ResponseDTO deleteTask(@PathVariable long taskId) {
+    public ResponseDTO deleteTask(@PathVariable("taskId") long taskId) {
         taskService.deleteTask(taskId);
         return new ResponseDTO(HttpStatus.OK, "Task deleted");
     }

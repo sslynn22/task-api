@@ -33,7 +33,21 @@ public class Comment {
     @Column(columnDefinition = "text")
     private String content;
 
+    @Setter
     @JoinColumn(name = "task_id")
     @ManyToOne(optional = false)
     private Task task;
+
+    public Comment(String writerId, String content, Task task) {
+        this.writerId = writerId;
+        this.createdAt = LocalDateTime.now();
+        this.content = content;
+        this.task = task;
+    }
+
+    public Comment(String writerId, String content) {
+        this.writerId = writerId;
+        this.createdAt = LocalDateTime.now();
+        this.content = content;
+    }
 }
