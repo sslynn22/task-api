@@ -2,11 +2,18 @@ package com.nhnacademy.task_api.domain.dto;
 
 import com.nhnacademy.task_api.domain.model.Project;
 import com.nhnacademy.task_api.domain.model.Status;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class ProjectRequest {
     private String projectName;
     private String adminId;
     private Status projectStatus;
+
 
     public Project makeProject() {
         return new Project(projectName, adminId, projectStatus);
@@ -17,4 +24,5 @@ public class ProjectRequest {
         project.setAdminId(adminId);
         project.setProjectStatus(projectStatus);
     }
+
 }

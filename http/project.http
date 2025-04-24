@@ -1,0 +1,30 @@
+### Project 생성
+POST localhost:6060/
+Content-Type: application/json
+
+{
+  "projectName": "sample",
+  "adminId": "me",
+  "projectStatus": "ACTIVE"
+}
+
+### 프로젝트 조회
+GET localhost:6060/1
+Accept: application/json
+
+###
+PUT localhost:6060/1
+Content-Type: application/json
+
+{
+  "projectName": "sampleee",
+  "adminId": "me",
+  "projectStatus": "ACTIVE"
+}
+
+###
+GET localhost:6060/
+Accept: application/json
+
+###
+DELETE localhost:6060/1

@@ -4,6 +4,7 @@ import com.nhnacademy.task_api.domain.dto.ProjectDTO;
 import com.nhnacademy.task_api.domain.dto.ProjectRequest;
 import com.nhnacademy.task_api.domain.dto.ResponseDTO;
 import com.nhnacademy.task_api.service.ProjectService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class ProjectController {
     }
 
     @PostMapping("/")
-    public ResponseDTO saveProject(@RequestBody ProjectRequest request) {
+    public ResponseDTO saveProject(@RequestBody ProjectRequest request, HttpServletRequest req) {
         projectService.saveProject(request.makeProject());
         return new ResponseDTO(HttpStatus.OK, "Project saved");
     }

@@ -19,9 +19,6 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void saveProject(Project project) {
-        if(projectRepository.existsById(project.getProjectId())) {
-            throw new ProjectAlreadyExistsException();
-        }
         projectRepository.save(project);
     }
 

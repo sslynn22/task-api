@@ -41,5 +41,6 @@ public class Project {
         this.projectName = projectName;
         this.adminId = adminId;
         this.projectStatus = projectStatus;
+        this.createdAt = LocalDateTime.now();
     }
 }
