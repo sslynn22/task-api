@@ -4,7 +4,6 @@ import com.nhnacademy.task_api.domain.dto.ProjectDTO;
 import com.nhnacademy.task_api.domain.dto.ProjectRequest;
 import com.nhnacademy.task_api.domain.dto.ResponseDTO;
 import com.nhnacademy.task_api.service.ProjectService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +15,12 @@ public class ProjectController {
     private final ProjectService projectService;
 
     @GetMapping("/")
-    public ProjectDTO findAllProjects(@RequestParam String adminId) {
-        return new ProjectDTO(projectService.findProjects(adminId));
+    public ProjectDTO findAllProjects(@RequestParam String userId) {
+        return new ProjectDTO(projectService.findProjects(userId));
     }
 
     @PostMapping("/")
-    public ResponseDTO saveProject(@RequestBody ProjectRequest request, HttpServletRequest req) {
+    public ResponseDTO saveProject(@RequestBody ProjectRequest request) {
         projectService.saveProject(request.makeProject());
         return new ResponseDTO(HttpStatus.OK, "Project saved");
     }

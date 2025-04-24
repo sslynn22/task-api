@@ -1,5 +1,7 @@
 package com.nhnacademy.task_api.service;
 
+import com.nhnacademy.task_api.domain.dto.TaskRequest;
+import com.nhnacademy.task_api.domain.exception.ProjectNotFoundException;
 import com.nhnacademy.task_api.domain.exception.TaskNotFoundException;
 import com.nhnacademy.task_api.domain.model.Project;
 import com.nhnacademy.task_api.domain.model.Task;
@@ -10,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -21,7 +25,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void saveTask(Task task, long projectId) {
         Project project = projectRepository.findById(projectId)
-                .orElseThrow(() -> new TaskNotFoundException("Project not found."));
+                .orElseThrow(() -> new ProjectNotFoundException());
         task.setProject(project);
         taskRepository.save(task);
     }
@@ -29,29 +33,34 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> findTasks(long projectId) {
         if (!projectRepository.existsById(projectId)) {
-            throw new TaskNotFoundException("Project not found.");
+            throw new ProjectNotFoundException();
         }
         return taskRepository.findAllByProject_ProjectId(projectId);
     }
 
     @Override
-    public Task findTaskById(Long taskId) {
+    public Task findTaskById(long taskId) {
         return taskRepository.findById(taskId)
-                .orElseThrow(() -> new TaskNotFoundException("Task not found."));
+                .orElseThrow(() -> new TaskNotFoundException());
     }
 
     @Override
-    public void updateTask(Task task) {
-        Task existing = taskRepository.findById(task.getTaskId())
-                .orElseThrow(() -> new TaskNotFoundException("Task not found."));
-        existing.setTaskName(task.getTaskName());
-        taskRepository.save(existing);
+    public void updateTask(long taskId, TaskRequest request) {
+        if(Objects.isNull(request)) {
+            throw new IllegalArgumentException();
+        }
+        Optional<Task> task = taskRepository.findById(taskId);
+        if(task.isEmpty()) {
+            throw new TaskNotFoundException();
+        }
+        request.applyTo(task.get());
+        taskRepository.save(task.get());
     }
 
     @Override
-    public void deleteTask(Long taskId) {
+    public void deleteTask(long taskId) {
         if (!taskRepository.existsById(taskId)) {
-            throw new TaskNotFoundException("Task not found.");
+            throw new TaskNotFoundException();
         }
         taskRepository.deleteById(taskId);
     }

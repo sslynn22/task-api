@@ -1,6 +1,6 @@
 ### 전체 Task 목록 조회 (프로젝트 ID: 1)
 GET http://localhost:6060/1/
-Content-Type: application/json
+Accept: application/json
 
 ### Task 등록 (프로젝트 ID: 1)
 POST http://localhost:6060/1/
@@ -8,13 +8,13 @@ Content-Type: application/json
 
 {
   "taskName": "NHN아카데미 미니프로젝트",
-  "managerId": "NHNacademy",
-  "userId" : "test_user"
+  "userId": "me",
+  "managerId": "NHNacademy"
 }
 
 ### 단일 Task 조회 (프로젝트 ID: 1, Task ID: 1)
 GET http://localhost:6060/1/1
-Content-Type: application/json
+Accept: application/json
 
 ### Task 수정 (프로젝트 ID: 1, Task ID: 1)
 PUT http://localhost:6060/1/1
@@ -27,4 +27,4 @@ Content-Type: application/json
 
 ### Task 삭제 (Task ID: 1)
 DELETE http://localhost:6060/1/1
-Content-Type: application/json
+Accept: application/json

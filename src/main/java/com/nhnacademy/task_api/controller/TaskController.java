@@ -3,13 +3,13 @@ package com.nhnacademy.task_api.controller;
 import com.nhnacademy.task_api.domain.dto.ResponseDTO;
 import com.nhnacademy.task_api.domain.dto.TaskDTO;
 import com.nhnacademy.task_api.domain.dto.TaskRequest;
-import com.nhnacademy.task_api.domain.model.MileStone;
 import com.nhnacademy.task_api.domain.model.Task;
 import com.nhnacademy.task_api.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,8 +18,9 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping("/")
-    public TaskDTO findAllTasks(@PathVariable("projectId") long projectId) {
-        return new TaskDTO(taskService.findTasks(projectId));
+    public List<Task> findAllTasks(@PathVariable("projectId") long projectId) {
+//        return new TaskDTO(taskService.findTasks(projectId));
+        return taskService.findTasks(projectId);
     }
 
     @PostMapping("/")
@@ -30,16 +31,15 @@ public class TaskController {
     }
 
     @GetMapping("/{taskId}")
-    public TaskDTO findTaskById(@PathVariable("taskId") long taskId) {
-        return new TaskDTO(taskService.findTaskById(taskId));
+    public Task findTaskById(@PathVariable("taskId") long taskId) {
+//        return new TaskDTO(taskService.findTaskById(taskId));
+        return taskService.findTaskById(taskId);
     }
 
     @PutMapping("/{taskId}")
     public ResponseDTO updateTask(@PathVariable("taskId") long taskId,
                                   @RequestBody TaskRequest request) {
-        Task task = request.makeTask();
-        task.setTaskId(taskId);
-        taskService.updateTask(task);
+        taskService.updateTask(taskId, request);
         return new ResponseDTO(HttpStatus.OK, "Task updated");
     }
 

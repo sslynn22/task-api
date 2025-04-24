@@ -45,11 +45,10 @@ public class Task {
 
     @Setter
     @JoinColumn(name = "milestone_id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private MileStone mileStone;
 
-    public Task(long taskId, String taskName, String userId, String managerId, Project project) {
-        this.taskId = taskId;
+    public Task(String taskName, String userId, String managerId, Project project) {
         this.taskName = taskName;
         this.userId = userId;
         this.managerId = managerId;
@@ -58,8 +57,11 @@ public class Task {
         this.mileStone = null;
     }
 
-    public Task(String taskName, String managerId) {
+    public Task(String taskName, String userId, String managerId) {
         this.taskName = taskName;
+        this.userId = userId;
         this.managerId = managerId;
+        this.createdAt = LocalDateTime.now();
+        this.mileStone = null;
     }
 }

@@ -2,9 +2,7 @@ package com.nhnacademy.task_api.domain.dto;
 
 import com.nhnacademy.task_api.domain.model.Project;
 import com.nhnacademy.task_api.domain.model.Status;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter

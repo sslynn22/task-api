@@ -28,3 +28,4 @@ Accept: application/json
 
 ###
 DELETE localhost:6060/1
+Accept: application/json
