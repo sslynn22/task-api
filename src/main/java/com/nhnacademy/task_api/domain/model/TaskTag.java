@@ -12,8 +12,8 @@ public class TaskTag {
     @EmbeddedId
     private TaskTagPk taskTagPk;
 
-    @JoinColumn(name = "task_id") // 식별관계일 때 사용
-    @MapsId("taskId")
+    @JoinColumn(name = "task_id")
+    @MapsId("taskId")   // 식별관계일 때 사용
     @ManyToOne(optional = false)
     private Task task;
 
@@ -21,4 +21,10 @@ public class TaskTag {
     @MapsId("tagId")
     @ManyToOne(optional = false)
     private Tag tag;
+
+    public TaskTag(Task task, Tag tag) {
+        this.taskTagPk = new TaskTagPk(task.getTaskId(), tag.getTagId());
+        this.task = task;
+        this.tag = tag;
+    }
 }

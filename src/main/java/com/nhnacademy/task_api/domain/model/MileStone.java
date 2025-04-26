@@ -1,15 +1,13 @@
 package com.nhnacademy.task_api.domain.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -20,24 +18,27 @@ public class MileStone {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long milestoneId;
 
+    @Setter
     @JoinColumn(name = "project_id")
     @ManyToOne(optional = false)
     private Project project;
 
     @Setter
     @Length(max = 50)
-    private String mileStoneName;
+    private String milestoneName;
 
     @Setter
-    private ZonedDateTime startDate;
+    private LocalDate startDate;
 
     @Setter
-    private ZonedDateTime endDate;
+    private LocalDate endDate;
 
-    public MileStone(Long milestoneId, Project project, String mileStoneName, ZonedDateTime startDate, ZonedDateTime endDate) {
-        this.milestoneId = milestoneId;
-        this.project = project;
-        this.mileStoneName = mileStoneName;
+    public MileStone(String milestoneName) {
+        this.milestoneName = milestoneName;
+    }
+
+    public MileStone(String milestoneName, LocalDate startDate, LocalDate endDate) {
+        this.milestoneName = milestoneName;
         this.startDate = startDate;
         this.endDate = endDate;
     }

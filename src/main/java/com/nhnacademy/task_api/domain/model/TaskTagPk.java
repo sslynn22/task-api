@@ -11,6 +11,6 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @Embeddable
 public class TaskTagPk implements Serializable {
-    private long tagId;
     private long taskId;
+    private long tagId;
 }

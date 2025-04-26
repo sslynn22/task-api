@@ -20,8 +20,8 @@ public class Member {
     @ManyToOne(optional = false)
     private Project project;
 
-    public Member(MemberPk memberPK, Project project) {
-        this.memberPK = memberPK;
+    public Member(String memberId, Project project) {
+        this.memberPK = new MemberPk(memberId, project.getProjectId());
         this.project = project;
     }
 }

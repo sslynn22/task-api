@@ -1,9 +1,15 @@
 package com.nhnacademy.task_api.domain.dto;
 
-public class TaskDTO {
-    Object task;
+import com.nhnacademy.task_api.domain.model.Task;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-    public TaskDTO(Object task) {
-        this.task = task;
-    }
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class TaskDTO {
+    Task task;
 }
