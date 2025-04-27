@@ -1,17 +1,13 @@
-### 전체 Comment 목록 조회 (프로젝트 ID: 1, Task ID: 1)
-GET http://localhost:6060/1/1/
-Accept: application/json
-
 ### Comment 등록 (프로젝트 ID: 1)
-POST http://localhost:6060/1/1/
+POST http://localhost:6060/1/2/?writerId=meme
 Content-Type: application/json
 
 {
   "content": "test comment"
 }
 
-### Comment 수정 (프로젝트 ID: 1, Task ID: 1, Comment ID: 1)
-PUT http://localhost:6060/1/1/1
+### Comment 수정 (프로젝트 ID: 1, Task ID: 2, Comment ID: 1)
+PUT http://localhost:6060/1/2/1
 Content-Type: application/json
 
 {
@@ -19,5 +15,5 @@ Content-Type: application/json
 }
 
 ### Comment 삭제 (Task ID: 1)
-DELETE http://localhost:6060/1/1/1
+DELETE http://localhost:6060/1/2/1
 Accept: application/json

@@ -126,10 +126,10 @@ public class ProjectController {
     }
 
     // Project Tag 수정
-    @PutMapping("/{project_id}/tag")
-    public ResponseEntity<ResponseDTO> updateTag(@PathVariable("project_id") Long project_id,
+    @PutMapping("/{project_id}/tag/{tag_id}")
+    public ResponseEntity<ResponseDTO> updateTag(@PathVariable("tag_id") Long tag_id,
                                                  @RequestBody TagRequest request) {
-        tagService.updateTag(project_id, request);
+        tagService.updateTag(tag_id, request);
         ResponseDTO response = new ResponseDTO(HttpStatus.CREATED, "Tag updated");
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -164,10 +164,10 @@ public class ProjectController {
     }
 
     // Project MileStone 수정
-    @PutMapping("/{project_id}/milestone")
-    public ResponseEntity<ResponseDTO> updateMileStone(@PathVariable("project_id") Long project_id,
+    @PutMapping("/{project_id}/milestone/{milestone_id}")
+    public ResponseEntity<ResponseDTO> updateMileStone(@PathVariable("milestone_id") Long milestone_id,
                                                        @RequestBody MileStoneRequest request) {
-        mileStoneService.updateMileStone(project_id, request);
+        mileStoneService.updateMileStone(milestone_id, request);
         ResponseDTO response = new ResponseDTO(HttpStatus.CREATED, "Milestone updated");
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

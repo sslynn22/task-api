@@ -11,4 +11,6 @@ public interface MileStoneService {
     MileStone findMileStoneById(long mileStoneId);
     void updateMileStone(long milestoneId, MileStoneRequest request);
     void deleteMileStone(long milestoneId);
+    void setMileStone(long taskId, long milestoneId);
+    void setNullMileStone(long taskId);
 }

@@ -3,7 +3,7 @@ GET http://localhost:6060/1/
 Accept: application/json
 
 ### Task 등록 (프로젝트 ID: 1)
-POST http://localhost:6060/1/
+POST http://localhost:6060/1/?userId=me
 Content-Type: application/json
 
 {
@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ### 단일 Task 조회 (프로젝트 ID: 1, Task ID: 1)
-GET http://localhost:6060/1/1
+GET http://localhost:6060/1/2
 Accept: application/json
 
 ### Task 수정 (프로젝트 ID: 1, Task ID: 1)
@@ -27,3 +27,30 @@ Content-Type: application/json
 ### Task 삭제 (Task ID: 1)
 DELETE http://localhost:6060/1/1
 Accept: application/json
+
+
+### Tag
+### Task에 Tag 등록
+POST localhost:6060/1/2/tag/3
+Accept: application/json
+
+### Task에 설정 되어있는 Tag 조회
+GET localhost:6060/1/2/tag
+Accept: application/json
+
+### Task에 설정된 Tag 삭제
+DELETE localhost:6060/1/2/tag/3
+Accept: application/json
+
+
+### MileStone
+### Task에 MileStone 등록
+POST localhost:6060/1/2/milestone/2
+Accept: application/json
+
+### Task에 설정 되어있는 MileStone 조회
+GET localhost:6060/1/2/milestone
+Accept: application/json
+
+### Task에 설정된 MileStone 삭제
+DELETE localhost:6060/1/2/milestone

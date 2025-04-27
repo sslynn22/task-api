@@ -3,10 +3,13 @@ package com.nhnacademy.task_api.service.Impl;
 import com.nhnacademy.task_api.domain.dto.MileStoneRequest;
 import com.nhnacademy.task_api.domain.exception.MileStoneNotFoundException;
 import com.nhnacademy.task_api.domain.exception.ProjectNotFoundException;
+import com.nhnacademy.task_api.domain.exception.TaskNotFoundException;
 import com.nhnacademy.task_api.domain.model.MileStone;
 import com.nhnacademy.task_api.domain.model.Project;
+import com.nhnacademy.task_api.domain.model.Task;
 import com.nhnacademy.task_api.repository.MileStoneRepository;
 import com.nhnacademy.task_api.repository.ProjectRepository;
+import com.nhnacademy.task_api.repository.TaskRepository;
 import com.nhnacademy.task_api.service.MileStoneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,7 @@ import java.util.Optional;
 public class MileStoneServiceImpl implements MileStoneService {
     private final MileStoneRepository mileStoneRepository;
     private final ProjectRepository projectRepository;
+    private final TaskRepository taskRepository;
 
     @Override
     public void saveMileStone(MileStone mileStone, long projectId) {
@@ -64,5 +68,29 @@ public class MileStoneServiceImpl implements MileStoneService {
             throw new MileStoneNotFoundException();
         }
         mileStoneRepository.deleteById(milestoneId);
+    }
+
+    @Override
+    public void setMileStone(long taskId, long milestoneId) {
+        if(!taskRepository.existsById(taskId)) {
+            throw new TaskNotFoundException();
+        }
+        if(!mileStoneRepository.existsById(milestoneId)) {
+            throw new MileStoneNotFoundException();
+        }
+        Task task = taskRepository.findById(taskId).get();
+        MileStone milestone = mileStoneRepository.findById(milestoneId).get();
+        task.setMileStone(milestone);
+        taskRepository.save(task);
+    }
+
+    @Override
+    public void setNullMileStone(long taskId) {
+        if(!taskRepository.existsById(taskId)) {
+            throw new TaskNotFoundException();
+        }
+        Task task = taskRepository.findById(taskId).get();
+        task.setMileStone(null);
+        taskRepository.save(task);
     }
 }

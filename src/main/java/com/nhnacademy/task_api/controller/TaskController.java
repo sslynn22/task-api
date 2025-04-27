@@ -114,9 +114,7 @@ public class TaskController {
     @PostMapping("/{taskId}/milestone/{milestoneId}")
     public ResponseEntity<ResponseDTO> saveMileStoneInTask(@PathVariable("taskId") long taskId,
                                                            @PathVariable("milestoneId") long milestoneId) {
-        Task task = taskService.findTaskById(taskId);
-        MileStone mileStone = mileStoneService.findMileStoneById(milestoneId);
-        task.setMileStone(mileStone);
+        mileStoneService.setMileStone(taskId, milestoneId);
         ResponseDTO response = new ResponseDTO(HttpStatus.CREATED, "MileStone save in task");
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -125,8 +123,7 @@ public class TaskController {
     // Task에 MileStone 삭제
     @DeleteMapping("/{taskId}/milestone")
     public ResponseEntity<ResponseDTO> deleteMileStoneInTask(@PathVariable("taskId") long taskId) {
-        Task task = taskService.findTaskById(taskId);
-        task.setMileStone(null);
+        mileStoneService.setNullMileStone(taskId);
         ResponseDTO response = new ResponseDTO(HttpStatus.OK, "MileStone delete in task");
 
         return ResponseEntity.status(HttpStatus.OK).body(response);

@@ -5,6 +5,7 @@ import com.nhnacademy.task_api.domain.exception.ProjectNotFoundException;
 import com.nhnacademy.task_api.domain.exception.TaskNotFoundException;
 import com.nhnacademy.task_api.domain.model.Project;
 import com.nhnacademy.task_api.domain.model.Task;
+import com.nhnacademy.task_api.repository.MileStoneRepository;
 import com.nhnacademy.task_api.repository.ProjectRepository;
 import com.nhnacademy.task_api.repository.TaskRepository;
 import com.nhnacademy.task_api.service.TaskService;
@@ -20,6 +21,7 @@ import java.util.Optional;
 public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
     private final ProjectRepository projectRepository;
+    private final MileStoneRepository mileStoneRepository;
 
     @Override
     public void saveTask(Task task, long projectId) {

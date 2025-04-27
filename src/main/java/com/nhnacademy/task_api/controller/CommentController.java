@@ -14,15 +14,6 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
     private final CommentService commentService;
 
-    // 이 부분을 TaskController -> findTaskById로 옮겨야하나... (Task 상세 조회 시 Comment들도 보이도록)
-//    @GetMapping("/")
-//    public ResponseEntity<CommentListDTO> findAllComments(@PathVariable("taskId") long taskId) {
-//        List<Comment> comments = commentService.findComments(taskId);
-//        CommentListDTO commentListDTO = new CommentListDTO(comments);
-//
-//        return ResponseEntity.status(HttpStatus.OK).body(commentListDTO);
-//    }
-
     // Task 내에 Comment 생성
     @PostMapping("/")
     public ResponseEntity<ResponseDTO> saveComment(@PathVariable("taskId") long taskId,
