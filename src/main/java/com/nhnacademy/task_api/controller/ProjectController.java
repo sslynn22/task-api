@@ -21,6 +21,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/miniDooray")
 public class ProjectController {
     private final ProjectService projectService;
     private final MemberService memberService;

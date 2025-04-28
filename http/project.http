@@ -1,27 +1,29 @@
 ### 프로젝트 생성 (project id: 1)
-POST localhost:6060/?adminId=testadmin
+POST localhost:6060/miniDooray/?adminId=testadmin
 Content-Type: application/json
 
 {
+  "adminId": "testadmin",
   "projectName": "sample",
   "projectStatus": "ACTIVE"
 }
 
 ### 프로젝트 생성 (project id: 2)
-POST localhost:6060/?adminId=testadmin
+POST localhost:6060/miniDooray/?adminId=testadmin
 Content-Type: application/json
 
 {
+  "adminId": "testadmin2",
   "projectName": "sample2",
   "projectStatus": "ACTIVE"
 }
 
 ### 프로젝트 단일 조회 (project id: 1)
-GET localhost:6060/1
+GET localhost:6060/miniDooray/1
 Accept: application/json
 
 ### 프로젝트 수정 (project id: 1)
-PUT localhost:6060/1?adminId=testadmin
+PUT localhost:6060/miniDooray/1?adminId=testadmin
 Content-Type: application/json
 
 {
@@ -30,35 +32,35 @@ Content-Type: application/json
 }
 
 ### 프로젝트 리스트 조회
-GET localhost:6060/?adminId=testadmin
+GET localhost:6060/miniDooray/?adminId=testadmin
 Accept: application/json
 
 ### 프로젝트 삭제 (project id: 2)
-DELETE localhost:6060/2
+DELETE localhost:6060/miniDooray/2
 Accept: application/json
 
 
 ### Member CRD
 ### Member 리스트 조회 (project id: 1)
-GET localhost:6060/1/member
+GET localhost:6060/miniDooray/1/member
 Accept: application/json
 
 ### Member 추가 (lee 추가)
-POST localhost:6060/1/member/lee
+POST localhost:6060/miniDooray/1/member/lee
 Accept: application/json
 
 ### Member 추가 (cho 추가)
-POST localhost:6060/1/member/cho
+POST localhost:6060/miniDooray/1/member/cho
 Accept: application/json
 
 ### Member 삭제 (lee 삭제)
-DELETE localhost:6060/1/member/lee
+DELETE localhost:6060/miniDooray/1/member/lee
 Accept: application/json
 
 
 ### Tag CRUD
 ### Tag 생성 (project id: 1, tag id: 1)
-POST localhost:6060/1/tag
+POST localhost:6060/miniDooray/1/tag
 Content-Type: application/json
 
 {
@@ -66,7 +68,7 @@ Content-Type: application/json
 }
 
 ### Tag 생성 (project id: 2, tag id: 2)
-POST localhost:6060/2/tag
+POST localhost:6060/miniDooray/2/tag
 Content-Type: application/json
 
 {
@@ -74,11 +76,11 @@ Content-Type: application/json
 }
 
 ### Tag 리스트 조회 (project id: 1)
-GET localhost:6060/1/tag
+GET localhost:6060/miniDooray/1/tag
 Accept: application/json
 
 ### Tag 수정 (project id: 1, tag id: 1)
-PUT localhost:6060/1/tag/1
+PUT localhost:6060/miniDooray/1/tag/1
 Content-Type: application/json
 
 {
@@ -86,13 +88,13 @@ Content-Type: application/json
 }
 
 ### Tag 삭제 (project id: 1, tag id: 1)
-DELETE localhost:6060/1/tag/1
+DELETE localhost:6060/miniDooray/1/tag/1
 Accept: application/json
 
 
 ### MileStone CRUD
 ### MileStone 생성 (project id: 1, milestone id: 1)
-POST localhost:6060/1/milestone
+POST localhost:6060/miniDooray/1/milestone
 Content-Type: application/json
 
 {
@@ -100,7 +102,7 @@ Content-Type: application/json
 }
 
 ### MileStone 생성 (project id: 1, milestone id: 2)
-POST localhost:6060/1/milestone
+POST localhost:6060/miniDooray/1/milestone
 Content-Type: application/json
 
 {
@@ -110,11 +112,11 @@ Content-Type: application/json
 }
 
 ### MileStone 리스트 조회 (project id: 1)
-GET localhost:6060/1/milestone
+GET localhost:6060/miniDooray/1/milestone
 Accept: application/json
 
 ### MileStone 수정 (project id: 1, milestone id: 1)
-PUT localhost:6060/1/milestone/1
+PUT localhost:6060/miniDooray/1/milestone/1
 Content-Type: application/json
 
 {
@@ -122,5 +124,5 @@ Content-Type: application/json
 }
 
 ### MileStone 삭제 (project id: 1, milestone id: 1)
-DELETE localhost:6060/1/milestone/1
+DELETE localhost:6060/miniDooray/1/milestone/1
 Accept: application/json

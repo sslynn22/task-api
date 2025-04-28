@@ -17,7 +17,7 @@ import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/{projectId}")
+@RequestMapping("/miniDooray/{projectId}")
 public class TaskController {
     private final TaskService taskService;
     private final TaskTagService taskTagService;

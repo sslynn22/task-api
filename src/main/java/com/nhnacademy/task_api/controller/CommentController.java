@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/{projectId}/{taskId}")
+@RequestMapping("/miniDooray/{projectId}/{taskId}")
 public class CommentController {
     private final CommentService commentService;
 
