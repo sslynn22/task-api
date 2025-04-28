@@ -5,13 +5,17 @@ import com.nhnacademy.task_api.domain.model.Comment;
 import com.nhnacademy.task_api.domain.model.MileStone;
 import com.nhnacademy.task_api.domain.model.Tag;
 import com.nhnacademy.task_api.domain.model.Task;
-import com.nhnacademy.task_api.service.*;
+import com.nhnacademy.task_api.service.CommentService;
+import com.nhnacademy.task_api.service.MileStoneService;
+import com.nhnacademy.task_api.service.TaskService;
+import com.nhnacademy.task_api.service.TaskTagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
@@ -43,12 +47,20 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    // Project 내에 있는 단일 Task 조회 + 해당 Task의 Comment 리스트 조회
+    // Project 내에 있는 단일 Task 조회
     @GetMapping("/{taskId}")
     public ResponseEntity<TaskDTO> findTaskById(@PathVariable("taskId") long taskId) {
         Task task = taskService.findTaskById(taskId);
         List<Comment> comments = commentService.findComments(taskId);
-        TaskDTO taskDTO = new TaskDTO(task, comments);
+        TaskDTO taskDTO = new TaskDTO(
+                task.getTaskId(),
+                task.getProject().getProjectId(),
+                Objects.isNull(task.getMileStone())? null : task.getMileStone().getMilestoneId(),
+                task.getTaskName(),
+                task.getUserId(),
+                task.getManagerId(),
+                task.getCreatedAt()
+        );
 
         return ResponseEntity.status(HttpStatus.OK).body(taskDTO);
     }

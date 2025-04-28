@@ -38,9 +38,7 @@ public class ProjectController {
 
     // 새로운 Project 생성
     @PostMapping("/")
-    public ResponseEntity<ResponseDTO> saveProject(@RequestBody ProjectRequest request,
-                                                   @RequestParam String adminId) {
-        request.setAdminId(adminId);    // set : 현재 로그인 된 사용자 id
+    public ResponseEntity<ResponseDTO> saveProject(@RequestBody ProjectRequest request) {
         projectService.saveProject(request.makeProject());
         ResponseDTO response = new ResponseDTO(HttpStatus.CREATED, "Project saved");
 
@@ -51,7 +49,12 @@ public class ProjectController {
     @GetMapping("/{project_id}")
     public ResponseEntity<ProjectDTO> findProjectById(@PathVariable("project_id") Long project_id) {
         Project project = projectService.findProjectById(project_id);
-        ProjectDTO projectDTO = new ProjectDTO(project);
+        ProjectDTO projectDTO = new ProjectDTO(
+                project.getProjectId(),
+                project.getProjectName(),
+                project.getCreatedAt(),
+                project.getAdminId(),
+                project.getProjectStatus());
 
         return ResponseEntity.status(HttpStatus.OK).body(projectDTO);
     }
