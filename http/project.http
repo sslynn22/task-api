@@ -1,18 +1,20 @@
 ### 프로젝트 생성 (project id: 1)
-POST localhost:6060/?adminId=testadmin
+POST localhost:6060/
 Content-Type: application/json
 
 {
   "projectName": "sample",
+  "adminId": "testadmin",
   "projectStatus": "ACTIVE"
 }
 
 ### 프로젝트 생성 (project id: 2)
-POST localhost:6060/?adminId=testadmin
+POST localhost:6060/
 Content-Type: application/json
 
 {
   "projectName": "sample2",
+  "adminId": "testadmin",
   "projectStatus": "ACTIVE"
 }
 

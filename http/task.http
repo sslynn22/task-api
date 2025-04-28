@@ -8,6 +8,7 @@ Content-Type: application/json
 
 {
   "taskName": "NHN아카데미 미니프로젝트",
+  "userId": "me",
   "managerId": "NHNacademy"
 }
 

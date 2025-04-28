@@ -12,7 +12,6 @@ public class ProjectRequest {
     private String adminId;
     private Status projectStatus;
 
-
     public Project makeProject() {
         return new Project(projectName, adminId, projectStatus);
     }

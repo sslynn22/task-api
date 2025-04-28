@@ -24,7 +24,7 @@ public class CommentController {
         List<Comment> comments = commentService.findComments(taskId);
         CommentListDTO commentListDTO = new CommentListDTO(comments);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(commentListDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(commentListDTO);
     }
 
     // Task 내에 Comment 생성

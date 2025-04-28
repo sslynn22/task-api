@@ -136,9 +136,21 @@ public class MileStoneServiceTest {
     @Test
     @DisplayName("delete milestone - success")
     void delete_milestone_success_test() {
-        when(mileStoneRepository.existsById(1L)).thenReturn(true);
+        when(projectRepository.findById(anyLong())).thenReturn(Optional.of(project));
+        when(mileStoneRepository.save(any(MileStone.class))).thenReturn(mileStone);
+        mileStoneService.saveMileStone(mileStone, 1L);
+
+        when(taskRepository.existsById(anyLong())).thenReturn(true);
+        when(mileStoneRepository.existsById(anyLong())).thenReturn(true);
+        when(taskRepository.findById(anyLong())).thenReturn(Optional.of(task));
+        when(mileStoneRepository.findById(anyLong())).thenReturn(Optional.of(mileStone));
+        mileStoneService.setMileStone(1L, 1L);
+
+        when(taskRepository.findByMileStone_MilestoneId(anyLong())).thenReturn(List.of(task));
+        when(taskRepository.save(any(Task.class))).thenReturn(task);
         mileStoneService.deleteMileStone(1L);
 
+        assertThat(task.getMileStone()).isNull();
         verify(mileStoneRepository, times(1)).deleteById(1L);
     }
 

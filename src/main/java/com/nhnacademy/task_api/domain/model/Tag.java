@@ -30,7 +30,7 @@ public class Tag {
     @Length(max = 50)
     private String tagName;
 
-    @OneToMany(mappedBy = "tag", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "tag", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<TaskTag> taskTags = new ArrayList<>();
 
     public Tag(String tagName) {

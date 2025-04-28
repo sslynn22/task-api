@@ -9,6 +9,8 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -47,6 +49,9 @@ public class Task {
     @JoinColumn(name = "milestone_id")
     @ManyToOne
     private MileStone mileStone;
+
+    @OneToMany(mappedBy = "task", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<TaskTag> taskTags = new ArrayList<>();
 
     public Task(String taskName, String userId, String managerId, Project project) {
         this.taskName = taskName;
