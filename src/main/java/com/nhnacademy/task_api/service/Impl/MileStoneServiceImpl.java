@@ -67,6 +67,10 @@ public class MileStoneServiceImpl implements MileStoneService {
         if(!mileStoneRepository.existsById(milestoneId)) {
             throw new MileStoneNotFoundException();
         }
+        List<Task> tasks = taskRepository.findByMileStone_MilestoneId(milestoneId);
+        for (Task task : tasks) {
+            setNullMileStone(task.getTaskId());
+        }
         mileStoneRepository.deleteById(milestoneId);
     }
 

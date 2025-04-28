@@ -8,6 +8,7 @@ import com.nhnacademy.task_api.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -30,7 +31,7 @@ public class ProjectServiceImpl implements ProjectService {
         if(Objects.isNull(adminId) || adminId.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        List<Project> result = projectRepository.findAllByAdminId(adminId);
+        List<Project> result = new ArrayList<>(projectRepository.findAllByAdminId(adminId));
         List<Project> result2 = projectRepository.findAllByProject_memberId(adminId);
         result.addAll(result2);
 

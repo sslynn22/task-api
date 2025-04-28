@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -26,6 +29,9 @@ public class Tag {
     @NotNull
     @Length(max = 50)
     private String tagName;
+
+    @OneToMany(mappedBy = "tag", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<TaskTag> taskTags = new ArrayList<>();
 
     public Tag(String tagName) {
         this.tagName = tagName;
