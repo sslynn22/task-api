@@ -107,17 +107,17 @@ public class RepositoryTest {
                 .containsExactlyInAnyOrder("Project A", "Project B");
     }
 
-//    @Test
-//    @DisplayName("TaskRepository Test")
-//    void task_findAllByProject_ProjectId_test() {
-//        List<Task> tasks = taskRepository.findAllByProject_ProjectId(2L);
-//
-//        assertThat(tasks).hasSize(2);
-//        assertThat(tasks)
-//                .extracting(Task::getProject)
-//                .extracting(Project::getProjectName)
-//                .containsExactlyInAnyOrder("Project B", "Project B");
-//    }
+    @Test
+    @DisplayName("TaskRepository Test")
+    void task_findAllByProject_ProjectId_test() {
+        List<Task> tasks = taskRepository.findAllByProject_ProjectId(2L);
+
+        assertThat(tasks).hasSize(2);
+        assertThat(tasks)
+                .extracting(Task::getProject)
+                .extracting(Project::getProjectName)
+                .containsExactlyInAnyOrder("Project B", "Project B");
+    }
 
     @Test
     @DisplayName("CommentRepository Test")
@@ -131,28 +131,28 @@ public class RepositoryTest {
                 .containsExactlyInAnyOrder("Task A");
     }
 
-//    @Test
-//    @DisplayName("MemberRepository Test")
-//    void member_findAllByProject_ProjectId_test() {
-//        List<Member> members = memberRepository.findAllByProject_ProjectId(1L);
-//
-//        assertThat(members).hasSize(2);
-//        assertThat(members)
-//                .extracting(Member::getMemberPK)
-//                .extracting(MemberPk::getMemberId)
-//                .containsExactlyInAnyOrder("user2", "user3");
-//    }
+    @Test
+    @DisplayName("MemberRepository Test")
+    void member_findAllByProject_ProjectId_test() {
+        List<Member> members = memberRepository.findAllByProject_ProjectId(1L);
 
-//    @Test
-//    @DisplayName("TagRepository Test")
-//    void tag_findAllByProject_ProjectId_test() {
-//        List<Tag> tags = tagRepository.findAllByProject_ProjectId(1L);
-//
-//        assertThat(tags).hasSize(3);
-//        assertThat(tags)
-//                .extracting(Tag::getTagName)
-//                .containsExactlyInAnyOrder("tag A", "tag C", "tag D");
-//    }
+        assertThat(members).hasSize(2);
+        assertThat(members)
+                .extracting(Member::getMemberPK)
+                .extracting(MemberPk::getMemberId)
+                .containsExactlyInAnyOrder("user2", "user3");
+    }
+
+    @Test
+    @DisplayName("TagRepository Test")
+    void tag_findAllByProject_ProjectId_test() {
+        List<Tag> tags = tagRepository.findAllByProject_ProjectId(1L);
+
+        assertThat(tags).hasSize(3);
+        assertThat(tags)
+                .extracting(Tag::getTagName)
+                .containsExactlyInAnyOrder("tag A", "tag C", "tag D");
+    }
 
     @Test
     @DisplayName("TaskTagRepository Test")
@@ -166,14 +166,14 @@ public class RepositoryTest {
                 .containsExactlyInAnyOrder("tag A", "tag D");
     }
 
-//    @Test
-//    @DisplayName("MileStoneRepository Test")
-//    void mileStone_findAllByProject_ProjectId_test() {
-//        List<MileStone> mileStones = mileStoneRepository.findAllByProject_ProjectId(2L);
-//
-//        assertThat(mileStones).hasSize(1);
-//        assertThat(mileStones)
-//                .extracting(MileStone::getMilestoneName)
-//                .containsExactlyInAnyOrder("milestone B");
-//    }
+    @Test
+    @DisplayName("MileStoneRepository Test")
+    void mileStone_findAllByProject_ProjectId_test() {
+        List<MileStone> mileStones = mileStoneRepository.findAllByProject_ProjectId(2L);
+
+        assertThat(mileStones).hasSize(1);
+        assertThat(mileStones)
+                .extracting(MileStone::getMilestoneName)
+                .containsExactlyInAnyOrder("milestone B");
+    }
 }

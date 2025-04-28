@@ -1,0 +1,796 @@
+openapi: 3.0.1
+info:
+  title: MiniDooray API (Full)
+  version: v1
+servers:
+  - url: http://localhost:6060
+paths:
+  /miniDooray/{projectId}/{taskId}/:
+    post:
+      summary: Comment 등록
+      tags:
+        - comment-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentRequest'
+      responses:
+        '201':
+          description: Comment 등록 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+  /miniDooray/{projectId}/{taskId}/{commentId}:
+    put:
+      summary: Comment 수정
+      tags:
+        - comment-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentRequest'
+      responses:
+        '200':
+          description: Comment 수정 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+    delete:
+      summary: Comment 삭제
+      tags:
+        - comment-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Comment 삭제 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+  /miniDooray/:
+    post:
+      summary: 프로젝트 생성
+      tags:
+        - project-controller
+      parameters:
+        - name: adminId
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '201':
+          description: 프로젝트 생성 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+    get:
+      summary: 프로젝트 리스트 조회
+      tags:
+        - project-controller
+      parameters:
+        - name: adminId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 프로젝트 리스트 반환
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+  /miniDooray/{projectId}:
+    get:
+      summary: 프로젝트 단일 조회
+      tags:
+        - project-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 프로젝트 단일 조회 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+    put:
+      summary: 프로젝트 수정
+      tags:
+        - project-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: adminId
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '200':
+          description: 프로젝트 수정 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+    delete:
+      summary: 프로젝트 삭제
+      tags:
+        - project-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 프로젝트 삭제 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+  /miniDooray/{projectId}/:
+    post:
+      summary: Task 등록
+      tags:
+        - task-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskRequest'
+      responses:
+        '201':
+          description: Task 등록 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+    get:
+      summary: 프로젝트 내 Task 목록 조회
+      tags:
+        - task-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 프로젝트 Task 목록 조회 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+  /miniDooray/{projectId}/{taskId}:
+    get:
+      summary: Task 단일 조회
+      tags:
+        - task-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Task 단일 조회 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+    put:
+      summary: Task 수정
+      tags:
+        - task-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskRequest'
+      responses:
+        '200':
+          description: Task 수정 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+    delete:
+      summary: Task 삭제
+      tags:
+        - task-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Task 삭제 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+  /miniDooray/{projectId}/{taskId}/tag/{tagId}:
+    post:
+      summary: Task에 Tag 등록
+      tags:
+        - task-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: tagId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Task에 Tag 등록 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+    delete:
+      summary: Task에 Tag 삭제
+      tags:
+        - task-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: tagId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Task에 Tag 삭제 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+  /miniDooray/{projectId}/{taskId}/milestone/{milestoneId}:
+    post:
+      summary: Task에 MileStone 등록
+      tags:
+        - task-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: milestoneId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Task에 MileStone 등록 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+  /miniDooray/{projectId}/{taskId}/milestone:
+    delete:
+      summary: Task에 설정된 MileStone 삭제
+      tags:
+        - task-controller
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Task에 설정된 MileStone 삭제 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDTO'
+
+components:
+  schemas:
+    CommentRequest:
+      type: object
+      properties:
+        writerId:
+          type: string
+          example: testadmin1
+        content:
+          type: string
+          example: test comment
+    ProjectRequest:
+      type: object
+      properties:
+        adminId:
+          type: string
+          example: testadmin
+        projectName:
+          type: string
+          example: sample
+        projectStatus:
+          type: string
+          enum:
+            - ACTIVE
+            - DORMANT
+            - COMPLETED
+    TaskRequest:
+      type: object
+      properties:
+        taskName:
+          type: string
+          example: "NHN아카데미 미니프로젝트"
+        managerId:
+          type: string
+          example: "NHNacademy"
+    TagRequest:
+      type: object
+      properties:
+        tagName:
+          type: string
+          example: testTag1
+    MileStoneRequest:
+      type: object
+      properties:
+        milestoneName:
+          type: string
+          example: testmilestone
+        startDate:
+          type: string
+          format: date
+          example: "2020-02-02"
+        endDate:
+          type: string
+          format: date
+          example: "2020-02-05"
+    ResponseDTO:
+      type: object
+      properties:
+        httpStatus:
+          type: string
+          example: 200 OK
+        responseMessage:
+          type: string
+          example: 성공 메시지
+    # Member API
+    /miniDooray/{projectId}/member:
+      get:
+        summary: Member 리스트 조회
+        tags:
+          - member-controller
+        parameters:
+          - name: projectId
+            in: path
+            required: true
+            schema:
+              type: integer
+        responses:
+          '200':
+            description: Member 리스트 반환
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResponseDTO'
+
+    /miniDooray/{projectId}/member/{memberId}:
+      post:
+        summary: Member 추가
+        tags:
+          - member-controller
+        parameters:
+          - name: projectId
+            in: path
+            required: true
+            schema:
+              type: integer
+          - name: memberId
+            in: path
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Member 추가 성공
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResponseDTO'
+
+      delete:
+        summary: Member 삭제
+        tags:
+          - member-controller
+        parameters:
+          - name: projectId
+            in: path
+            required: true
+            schema:
+              type: integer
+          - name: memberId
+            in: path
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Member 삭제 성공
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResponseDTO'
+
+    # Tag API
+    /miniDooray/{projectId}/tag:
+      post:
+        summary: Tag 생성
+        tags:
+          - tag-controller
+        parameters:
+          - name: projectId
+            in: path
+            required: true
+            schema:
+              type: integer
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagRequest'
+        responses:
+          '201':
+            description: Tag 생성 성공
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResponseDTO'
+      get:
+        summary: Tag 리스트 조회
+        tags:
+          - tag-controller
+        parameters:
+          - name: projectId
+            in: path
+            required: true
+            schema:
+              type: integer
+        responses:
+          '200':
+            description: Tag 리스트 반환
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResponseDTO'
+
+    /miniDooray/{projectId}/tag/{tagId}:
+      put:
+        summary: Tag 수정
+        tags:
+          - tag-controller
+        parameters:
+          - name: projectId
+            in: path
+            required: true
+            schema:
+              type: integer
+          - name: tagId
+            in: path
+            required: true
+            schema:
+              type: integer
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagRequest'
+        responses:
+          '200':
+            description: Tag 수정 성공
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResponseDTO'
+      delete:
+        summary: Tag 삭제
+        tags:
+          - tag-controller
+        parameters:
+          - name: projectId
+            in: path
+            required: true
+            schema:
+              type: integer
+          - name: tagId
+            in: path
+            required: true
+            schema:
+              type: integer
+        responses:
+          '200':
+            description: Tag 삭제 성공
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResponseDTO'
+
+    # MileStone API
+    /miniDooray/{projectId}/milestone:
+      post:
+        summary: MileStone 생성
+        tags:
+          - milestone-controller
+        parameters:
+          - name: projectId
+            in: path
+            required: true
+            schema:
+              type: integer
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MileStoneRequest'
+        responses:
+          '201':
+            description: MileStone 생성 성공
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResponseDTO'
+      get:
+        summary: MileStone 리스트 조회
+        tags:
+          - milestone-controller
+        parameters:
+          - name: projectId
+            in: path
+            required: true
+            schema:
+              type: integer
+        responses:
+          '200':
+            description: MileStone 리스트 반환
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResponseDTO'
+
+    /miniDooray/{projectId}/milestone/{milestoneId}:
+      put:
+        summary: MileStone 수정
+        tags:
+          - milestone-controller
+        parameters:
+          - name: projectId
+            in: path
+            required: true
+            schema:
+              type: integer
+          - name: milestoneId
+            in: path
+            required: true
+            schema:
+              type: integer
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MileStoneRequest'
+        responses:
+          '200':
+            description: MileStone 수정 성공
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResponseDTO'
+
+      delete:
+        summary: MileStone 삭제
+        tags:
+          - milestone-controller
+        parameters:
+          - name: projectId
+            in: path
+            required: true
+            schema:
+              type: integer
+          - name: milestoneId
+            in: path
+            required: true
+            schema:
+              type: integer
+        responses:
+          '200':
+            description: MileStone 삭제 성공
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ResponseDTO'
+
+  components:
+    schemas:
+      TagRequest:
+        type: object
+        properties:
+          tagName:
+            type: string
+            example: testTag1
+      MileStoneRequest:
+        type: object
+        properties:
+          milestoneName:
+            type: string
+            example: testmilestone
+          startDate:
+            type: string
+            format: date
+            example: "2020-02-02"
+          endDate:
+            type: string
+            format: date
+            example: "2020-02-05"
+      ResponseDTO:
+        type: object
+        properties:
+          httpStatus:
+            type: string
+            example: 200 OK
+          responseMessage:
+            type: string
+            example: 성공 메시지
