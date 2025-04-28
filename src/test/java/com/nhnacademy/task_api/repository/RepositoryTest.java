@@ -29,11 +29,15 @@ public class RepositoryTest {
     @Autowired
     private MileStoneRepository mileStoneRepository;
 
+    private Project project1;
+    private Project project2;
+    private Project project3;
+
     @BeforeAll
     void setUp() {
-        Project project1 = new Project("Project A", "user1", Status.ACTIVE);
-        Project project2 = new Project("Project B", "user1", Status.DORMANT);
-        Project project3 = new Project("Project C", "user2", Status.COMPLETED);
+        project1 = new Project("Project A", "user1", Status.ACTIVE);
+        project2 = new Project("Project B", "user1", Status.DORMANT);
+        project3 = new Project("Project C", "user2", Status.COMPLETED);
 
         projectRepository.save(project1);
         projectRepository.save(project2);
@@ -110,7 +114,7 @@ public class RepositoryTest {
     @Test
     @DisplayName("TaskRepository Test")
     void task_findAllByProject_ProjectId_test() {
-        List<Task> tasks = taskRepository.findAllByProject_ProjectId(2L);
+        List<Task> tasks = taskRepository.findAllByProject_ProjectId(project2.getProjectId());
 
         assertThat(tasks).hasSize(2);
         assertThat(tasks)
@@ -134,7 +138,7 @@ public class RepositoryTest {
     @Test
     @DisplayName("MemberRepository Test")
     void member_findAllByProject_ProjectId_test() {
-        List<Member> members = memberRepository.findAllByProject_ProjectId(1L);
+        List<Member> members = memberRepository.findAllByProject_ProjectId(project1.getProjectId());
 
         assertThat(members).hasSize(2);
         assertThat(members)
@@ -146,7 +150,7 @@ public class RepositoryTest {
     @Test
     @DisplayName("TagRepository Test")
     void tag_findAllByProject_ProjectId_test() {
-        List<Tag> tags = tagRepository.findAllByProject_ProjectId(1L);
+        List<Tag> tags = tagRepository.findAllByProject_ProjectId(project1.getProjectId());
 
         assertThat(tags).hasSize(3);
         assertThat(tags)
@@ -169,7 +173,7 @@ public class RepositoryTest {
     @Test
     @DisplayName("MileStoneRepository Test")
     void mileStone_findAllByProject_ProjectId_test() {
-        List<MileStone> mileStones = mileStoneRepository.findAllByProject_ProjectId(2L);
+        List<MileStone> mileStones = mileStoneRepository.findAllByProject_ProjectId(project2.getProjectId());
 
         assertThat(mileStones).hasSize(1);
         assertThat(mileStones)
