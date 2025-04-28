@@ -30,7 +30,11 @@ public class ProjectServiceImpl implements ProjectService {
         if(Objects.isNull(adminId) || adminId.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        return projectRepository.findAllByAdminId(adminId);
+        List<Project> result = projectRepository.findAllByAdminId(adminId);
+        List<Project> result2 = projectRepository.findAllByProject_memberId(adminId);
+        result.addAll(result2);
+
+        return result;
     }
 
     @Override

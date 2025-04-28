@@ -18,6 +18,7 @@ import java.util.List;
 public class CommentController {
     private final CommentService commentService;
 
+    // Task 내에 있는 Comment 리스트 조회
     @GetMapping("/")
     public ResponseEntity<CommentListDTO> findAllComments(@PathVariable("taskId") long taskId) {
         List<Comment> comments = commentService.findComments(taskId);

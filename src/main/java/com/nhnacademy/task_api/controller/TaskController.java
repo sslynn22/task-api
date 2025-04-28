@@ -1,11 +1,9 @@
 package com.nhnacademy.task_api.controller;
 
 import com.nhnacademy.task_api.domain.dto.*;
-import com.nhnacademy.task_api.domain.model.Comment;
 import com.nhnacademy.task_api.domain.model.MileStone;
 import com.nhnacademy.task_api.domain.model.Tag;
 import com.nhnacademy.task_api.domain.model.Task;
-import com.nhnacademy.task_api.service.CommentService;
 import com.nhnacademy.task_api.service.MileStoneService;
 import com.nhnacademy.task_api.service.TaskService;
 import com.nhnacademy.task_api.service.TaskTagService;
@@ -24,7 +22,6 @@ public class TaskController {
     private final TaskService taskService;
     private final TaskTagService taskTagService;
     private final MileStoneService mileStoneService;
-    private final CommentService commentService;
 
     // Project 내에 있는 Task 목록 조회
     @GetMapping("/")
@@ -51,7 +48,6 @@ public class TaskController {
     @GetMapping("/{taskId}")
     public ResponseEntity<TaskDTO> findTaskById(@PathVariable("taskId") long taskId) {
         Task task = taskService.findTaskById(taskId);
-        List<Comment> comments = commentService.findComments(taskId);
         TaskDTO taskDTO = new TaskDTO(
                 task.getTaskId(),
                 task.getProject().getProjectId(),

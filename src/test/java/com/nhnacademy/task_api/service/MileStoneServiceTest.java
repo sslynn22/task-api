@@ -1,6 +1,9 @@
 package com.nhnacademy.task_api.service;
 
+import com.nhnacademy.task_api.domain.dto.MileStoneRequest;
+import com.nhnacademy.task_api.domain.exception.MileStoneNotFoundException;
 import com.nhnacademy.task_api.domain.exception.ProjectNotFoundException;
+import com.nhnacademy.task_api.domain.exception.TaskNotFoundException;
 import com.nhnacademy.task_api.domain.model.MileStone;
 import com.nhnacademy.task_api.domain.model.Project;
 import com.nhnacademy.task_api.domain.model.Status;
@@ -81,13 +84,120 @@ public class MileStoneServiceTest {
     @Test
     @DisplayName("find milestone - success")
     void find_milestone_success_test() {
+        when(mileStoneRepository.existsById(anyLong())).thenReturn(true);
         when(mileStoneRepository.findById(anyLong())).thenReturn(Optional.of(mileStone));
+        MileStone findMileStone = mileStoneService.findMileStoneById(1L);
 
+        assertThat(findMileStone).isNotNull();
+        assertThat(findMileStone).isEqualTo(mileStone);
     }
 
     @Test
     @DisplayName("find milestone - fail")
     void find_milestone_fail_test() {
+        when(mileStoneRepository.existsById(10L)).thenReturn(false);
 
+        assertThatThrownBy(() -> mileStoneService.findMileStoneById(10L))
+                .isInstanceOf(MileStoneNotFoundException.class);
+    }
+
+    @Test
+    @DisplayName("update milestone - success")
+    void update_milestone_success_test() {
+        MileStoneRequest request = new MileStoneRequest();
+        request.setMilestoneName("new milestone name");
+
+        when(mileStoneRepository.findById(1L)).thenReturn(Optional.of(mileStone));
+        mileStoneService.updateMileStone(1L, request);
+
+        assertThat(mileStone.getMilestoneName()).isEqualTo("new milestone name");
+        verify(mileStoneRepository, times(1)).save(any(MileStone.class));
+    }
+
+    @Test
+    @DisplayName("update milestone - fail1")
+    void update_milestone_fail1_test() {
+        assertThatThrownBy(() -> mileStoneService.updateMileStone(1L, null))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("update milestone - fail2")
+    void update_milestone_fail2_test() {
+        MileStoneRequest request = new MileStoneRequest();
+        request.setMilestoneName("new milestone name");
+
+        when(mileStoneRepository.findById(10L)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> mileStoneService.updateMileStone(10L, request))
+                .isInstanceOf(MileStoneNotFoundException.class);
+    }
+
+    @Test
+    @DisplayName("delete milestone - success")
+    void delete_milestone_success_test() {
+        when(mileStoneRepository.existsById(1L)).thenReturn(true);
+        mileStoneService.deleteMileStone(1L);
+
+        verify(mileStoneRepository, times(1)).deleteById(1L);
+    }
+
+    @Test
+    @DisplayName("delete milestone - fail")
+    void delete_milestone_fail_test() {
+        when(mileStoneRepository.existsById(10L)).thenReturn(false);
+
+        assertThatThrownBy(() -> mileStoneService.deleteMileStone(10L))
+                .isInstanceOf(MileStoneNotFoundException.class);
+    }
+
+    @Test
+    @DisplayName("task set milestone - success")
+    void task_set_milestone_success_test() {
+        when(taskRepository.existsById(1L)).thenReturn(true);
+        when(mileStoneRepository.existsById(1L)).thenReturn(true);
+        when(taskRepository.findById(1L)).thenReturn(Optional.of(task));
+        when(mileStoneRepository.findById(1L)).thenReturn(Optional.of(mileStone));
+        mileStoneService.setMileStone(1L, 1L);
+
+        verify(taskRepository, atLeast(1)).save(any(Task.class));
+    }
+
+    @Test
+    @DisplayName("task set milestone - fail1")
+    void task_set_milestone_fail1_test() {
+        when(taskRepository.existsById(10L)).thenReturn(false);
+
+        assertThatThrownBy(() -> mileStoneService.setMileStone(10L, 1L))
+                .isInstanceOf(TaskNotFoundException.class);
+    }
+
+    @Test
+    @DisplayName("task set milestone - fail2")
+    void task_set_milestone_fail2_test() {
+        when(taskRepository.existsById(1L)).thenReturn(true);
+        when(mileStoneRepository.existsById(10L)).thenReturn(false);
+
+        assertThatThrownBy(() -> mileStoneService.setMileStone(1L, 10L))
+                .isInstanceOf(MileStoneNotFoundException.class);
+    }
+
+    @Test
+    @DisplayName("task set null milestone - success")
+    void task_set_null_milestone_success_test() {
+        when(taskRepository.existsById(1L)).thenReturn(true);
+        when(taskRepository.findById(1L)).thenReturn(Optional.of(task));
+        mileStoneService.setNullMileStone(1L);
+
+        verify(taskRepository, atLeast(1)).save(any(Task.class));
+    }
+
+    @Test
+    @DisplayName("task set null milestone - fail")
+    void task_set_null_milestone_fail_test() {
+        when(taskRepository.existsById(10L)).thenReturn(false);
+
+        assertThatThrownBy(() -> mileStoneService.setNullMileStone(10L))
+                .isInstanceOf(TaskNotFoundException.class);
     }
 }

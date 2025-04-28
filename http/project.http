@@ -1,5 +1,5 @@
-### 프로젝트 생성
-POST localhost:6060/?adminId=asd
+### 프로젝트 생성 (project id: 1)
+POST localhost:6060/?adminId=testadmin
 Content-Type: application/json
 
 {
@@ -7,8 +7,8 @@ Content-Type: application/json
   "projectStatus": "ACTIVE"
 }
 
-### 프로젝트 생성
-POST localhost:6060/?adminId=asd
+### 프로젝트 생성 (project id: 2)
+POST localhost:6060/?adminId=testadmin
 Content-Type: application/json
 
 {
@@ -16,12 +16,12 @@ Content-Type: application/json
   "projectStatus": "ACTIVE"
 }
 
-### 프로젝트 조회
+### 프로젝트 단일 조회 (project id: 1)
 GET localhost:6060/1
 Accept: application/json
 
-### 프로젝트 수정
-PUT localhost:6060/1?adminId=asd
+### 프로젝트 수정 (project id: 1)
+PUT localhost:6060/1?adminId=testadmin
 Content-Type: application/json
 
 {
@@ -30,34 +30,34 @@ Content-Type: application/json
 }
 
 ### 프로젝트 리스트 조회
-GET localhost:6060/?adminId=asd
+GET localhost:6060/?adminId=testadmin
 Accept: application/json
 
-### 프로젝트 삭제
-DELETE localhost:6060/7
+### 프로젝트 삭제 (project id: 2)
+DELETE localhost:6060/2
 Accept: application/json
 
 
 ### Member CRD
-### Member 리스트 조회
+### Member 리스트 조회 (project id: 1)
 GET localhost:6060/1/member
 Accept: application/json
 
-### Member 추가
-POST localhost:6060/1/member/lyc
+### Member 추가 (lee 추가)
+POST localhost:6060/1/member/lee
 Accept: application/json
 
-### Member 추가
+### Member 추가 (cho 추가)
 POST localhost:6060/1/member/cho
 Accept: application/json
 
-### Member 삭제
-DELETE localhost:6060/1/member/lyc
+### Member 삭제 (lee 삭제)
+DELETE localhost:6060/1/member/lee
 Accept: application/json
 
 
 ### Tag CRUD
-### Tag 생성
+### Tag 생성 (project id: 1, tag id: 1)
 POST localhost:6060/1/tag
 Content-Type: application/json
 
@@ -65,7 +65,7 @@ Content-Type: application/json
   "tagName": "testTag1"
 }
 
-### Tag 생성
+### Tag 생성 (project id: 2, tag id: 2)
 POST localhost:6060/2/tag
 Content-Type: application/json
 
@@ -73,11 +73,11 @@ Content-Type: application/json
   "tagName": "testTag2"
 }
 
-### Tag 리스트 조회
+### Tag 리스트 조회 (project id: 1)
 GET localhost:6060/1/tag
 Accept: application/json
 
-### Tag 수정
+### Tag 수정 (project id: 1, tag id: 1)
 PUT localhost:6060/1/tag/1
 Content-Type: application/json
 
@@ -85,13 +85,13 @@ Content-Type: application/json
   "tagName": "tag수정"
 }
 
-### Tag 삭제
+### Tag 삭제 (project id: 1, tag id: 1)
 DELETE localhost:6060/1/tag/1
 Accept: application/json
 
 
 ### MileStone CRUD
-### MileStone 생성
+### MileStone 생성 (project id: 1, milestone id: 1)
 POST localhost:6060/1/milestone
 Content-Type: application/json
 
@@ -99,7 +99,7 @@ Content-Type: application/json
   "milestoneName": "testmilestone"
 }
 
-### MileStone 생성
+### MileStone 생성 (project id: 1, milestone id: 2)
 POST localhost:6060/1/milestone
 Content-Type: application/json
 
@@ -109,11 +109,11 @@ Content-Type: application/json
   "endDate": "2020-02-05"
 }
 
-### MileStone 리스트 조회
+### MileStone 리스트 조회 (project id: 1)
 GET localhost:6060/1/milestone
 Accept: application/json
 
-### MileStone 수정
+### MileStone 수정 (project id: 1, milestone id: 1)
 PUT localhost:6060/1/milestone/1
 Content-Type: application/json
 
@@ -121,6 +121,6 @@ Content-Type: application/json
   "milestoneName": "milestone수정"
 }
 
-### MileStone 삭제
+### MileStone 삭제 (project id: 1, milestone id: 1)
 DELETE localhost:6060/1/milestone/1
 Accept: application/json
