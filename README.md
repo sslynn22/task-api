@@ -1,6 +1,10 @@
 # Task API 
 
-## REST-API 실행 요청 및 결과 문서
+## 📊 ERD
+
+![ERD](db/erd.png)
+
+## 📄 REST-API 실행 요청 및 결과 문서
 
 ![API Documentation1](docs/api-documentation-capture.png)
 
